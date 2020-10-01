@@ -1,9 +1,16 @@
+// Imports
 const express = require('express');
+
+// Constants
 const app = express();
 const port = process.env.port || 8000;
 
+// Config
+app.set('views', './views');
+app.set('view engine', 'pug');
+
 app.get('/', (req, res) => {
-    res.send('rosen chat');
+    res.render('index');
 });
 
 app.listen(port, () => {
