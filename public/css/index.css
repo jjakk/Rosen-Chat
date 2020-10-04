@@ -5,6 +5,17 @@
 
 /* Tags */
 
+header, main{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%; 
+}
+
+main{
+    height: 100%;
+}
+
 /* Other */
 
 *{
