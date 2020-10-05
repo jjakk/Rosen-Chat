@@ -49,7 +49,7 @@ ul {
 /* Login Page */
 
 .login.page {
-  background-color: #000;
+  background-color: #1a1a1a;
 }
 
 .login.page .form {
@@ -65,7 +65,7 @@ ul {
 .login.page .form .usernameInput {
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid whitesmoke;
   outline: none;
   padding-bottom: 15px;
   text-align: center;
@@ -82,7 +82,7 @@ ul {
 }
 
 .login.page .title, .login.page .usernameInput {
-  color: #fff;
+  color: whitesmoke;
   font-weight: 100;
 }
 
@@ -113,7 +113,7 @@ ul {
 
 .chatArea {
   height: 100%;
-  padding-bottom: 60px;
+  padding-bottom: 140px;
 }
 
 .messages {
@@ -137,13 +137,22 @@ ul {
 /* Input */
 
 .inputMessage {
-  border: 10px solid #000;
+  border: 10px solid #1a1a1a;
   bottom: 0;
-  height: 60px;
+  height: 140px;
   left: 0;
   outline: none;
-  padding-left: 10px;
+  padding: 10px;
   position: absolute;
   right: 0;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  justify-content: space-around 5px;
+}
+
+.inputMessage img{
+  width: 100px;
+  height: 100px;
 }
