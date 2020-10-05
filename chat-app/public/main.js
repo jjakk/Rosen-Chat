@@ -12,6 +12,7 @@ $(function() {
   var $usernameInput = $('.usernameInput'); // Input for username
   var $messages = $('.messages'); // Messages area
   var $inputMessage = $('.inputMessage'); // Input message input box
+  var $emoji = $('.emoji');
 
   var $loginPage = $('.login.page'); // The login page
   var $chatPage = $('.chat.page'); // The chatroom page
@@ -54,6 +55,22 @@ $(function() {
   // Sends a chat message
   const sendMessage = () => {
     var message = $inputMessage.val();
+    // Prevent markup from being injected into the message
+    message = cleanInput(message);
+    // if there is a non-empty message and a socket connection
+    if (message && connected) {
+      $inputMessage.val('');
+      addChatMessage({
+        username: username,
+        message: message
+      });
+      // tell server to execute 'new message' and send along one parameter
+      socket.emit('new message', message);
+    }
+  }
+
+  const sendEmoji = (event) => {
+    var message = event.toElement.alt;
     // Prevent markup from being injected into the message
     message = cleanInput(message);
     // if there is a non-empty message and a socket connection
@@ -205,6 +222,11 @@ $(function() {
         setUsername();
       }
     }
+  });
+
+  $emoji.click(event => {
+    console.log(event);
+    sendEmoji(event);
   });
 
   $inputMessage.on('input', () => {
