@@ -29,6 +29,14 @@ io.on('connection', (socket) => {
     });
   });
 
+  socket.on('new emoji', (data) => {
+    // we tell the client to execute 'new message'
+    socket.broadcast.emit('new emoji', {
+      username: socket.username,
+      message: data
+    });
+  });
+
   // when the client emits 'add user', this listens and executes
   socket.on('add user', (username) => {
     if (addedUser) return;

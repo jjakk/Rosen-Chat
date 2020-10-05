@@ -70,23 +70,23 @@ $(function() {
   }
 
   const sendEmoji = (event) => {
-    var message = event.toElement.alt;
+    var message = event.toElement.src;
     // Prevent markup from being injected into the message
     message = cleanInput(message);
     // if there is a non-empty message and a socket connection
     if (message && connected) {
       $inputMessage.val('');
-      addChatMessage({
+      addChatEmoji({
         username: username,
         message: message
       });
       // tell server to execute 'new message' and send along one parameter
-      socket.emit('new message', message);
+      socket.emit('new emoji', message);
     }
   }
 
   // Log a message
-    const log = (message, options) => {
+  const log = (message, options) => {
     var $el = $('<li>').addClass('log').text(message);
     addMessageElement($el, options);
   }
@@ -106,6 +106,30 @@ $(function() {
       .css('color', getUsernameColor(data.username));
     var $messageBodyDiv = $('<span class="messageBody">')
       .text(data.message);
+
+    var typingClass = data.typing ? 'typing' : '';
+    var $messageDiv = $('<li class="message"/>')
+      .data('username', data.username)
+      .addClass(typingClass)
+      .append($usernameDiv, $messageBodyDiv);
+
+    addMessageElement($messageDiv, options);
+  }
+
+  const addChatEmoji = (data, options) => {
+    // Don't fade the message in if there is an 'X was typing'
+    var $typingMessages = getTypingMessages(data);
+    options = options || {};
+    if ($typingMessages.length !== 0) {
+      options.fade = false;
+      $typingMessages.remove();
+    }
+
+    var $usernameDiv = $('<span class="username"/>')
+      .text(data.username)
+      .css('color', getUsernameColor(data.username));
+    var $messageBodyDiv = $('<img class="messageBody">')
+      .attr('src', data.message);
 
     var typingClass = data.typing ? 'typing' : '';
     var $messageDiv = $('<li class="message"/>')
@@ -224,16 +248,15 @@ $(function() {
     }
   });
 
-  $emoji.click(event => {
-    console.log(event);
-    sendEmoji(event);
-  });
-
   $inputMessage.on('input', () => {
     updateTyping();
   });
 
   // Click events
+
+  $emoji.click(event => {
+    sendEmoji(event);
+  });
 
   // Focus input when clicking anywhere on login page
   $loginPage.click(() => {
@@ -261,6 +284,10 @@ $(function() {
   // Whenever the server emits 'new message', update the chat body
   socket.on('new message', (data) => {
     addChatMessage(data);
+  });
+
+  socket.on('new emoji', (data) => {
+    addChatEmoji(data);
   });
 
   // Whenever the server emits 'user joined', log it in the chat body
