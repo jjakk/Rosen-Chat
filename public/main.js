@@ -258,6 +258,8 @@ $(function() {
     sendEmoji(event);
   });
 
+  $emoji.attr('alt', 'test');
+
   // Focus input when clicking anywhere on login page
   $loginPage.click(() => {
     $currentInput.focus();
@@ -329,3 +331,4 @@ $(function() {
   });
 
 });
+

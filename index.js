@@ -2,6 +2,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var fs = require('fs');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 8000;
@@ -12,6 +13,15 @@ server.listen(port, () => {
 
 // Routing
 app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'pug');
+app.set('views', './views');
+
+app.get('/', async (req, res) => {
+  var filename = await fs.promises.readdir('public/img/emojis');
+  res.render('index', {
+    sources: filename
+  });
+});
 
 // Chatroom
 
@@ -82,3 +92,4 @@ io.on('connection', (socket) => {
     }
   });
 });
+
