@@ -9,7 +9,9 @@ ul.pages
       ul.messages
     .inputMessage
       each source in sources
-        img.emoji(src=`./img/emojis/${source}`)
+        div.emoji
+          img(src=`./img/emojis/${source}`)
+          label= source
   li.login.page
     .form
       h3.title What&apos;s your name?

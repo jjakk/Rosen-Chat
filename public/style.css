@@ -113,7 +113,7 @@ ul {
 
 .chatArea {
   height: 100%;
-  padding-bottom: 140px;
+  padding-bottom: 160px;
 }
 
 .messages {
@@ -142,7 +142,7 @@ ul {
 .inputMessage {
   border: 10px solid #1a1a1a;
   bottom: 0;
-  height: 140px;
+  height: 160px;
   left: 0;
   outline: none;
   padding: 10px;
@@ -153,10 +153,18 @@ ul {
   overflow: auto;
 }
 
-.inputMessage img{
-  width: 100px;
-  height: 100px;
+.emoji{
   margin-right: 10px;
   margin-bottom: 10px;
   cursor: pointer;
+  display: inline-block;
+}
+
+.emoji img{
+  width: 100px;
+  height: 100px;
+}
+
+.emoji label{
+  display: block;
 }
