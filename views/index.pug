@@ -3,6 +3,7 @@ head
   meta(charset='UTF-8')
   title Rosen Chat
   link(rel='stylesheet' href='style.css')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
 ul.pages
   li.chat.page
     .chatArea
@@ -11,7 +12,7 @@ ul.pages
       each source in sources
         div.emoji
           img(src=`./img/emojis/${source}`)
-          label= source
+          label= source.substring(0, source.length-4).replace(/-/g, ' ')
   li.login.page
     .form
       h3.title What&apos;s your name?
