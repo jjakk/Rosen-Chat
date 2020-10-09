@@ -113,7 +113,7 @@ ul {
 
 .chatArea {
   height: 100%;
-  padding-bottom: 160px;
+  padding-bottom: 300px;
 }
 
 .messages {
@@ -126,8 +126,8 @@ ul {
 .messageBody {
   color: gray;
   display: inline-block;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
 }
 
 .username {
@@ -142,7 +142,7 @@ ul {
 .inputMessage {
   border: 10px solid #1a1a1a;
   bottom: 0;
-  height: 160px;
+  height: 300px;
   width: 100px;
   left: 0;
   outline: none;
@@ -171,4 +171,5 @@ ul {
   display: block;
   width: 100px;
   text-wrap: wrap;
+  padding: 5px;
 }
