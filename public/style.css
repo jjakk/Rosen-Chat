@@ -143,6 +143,7 @@ ul {
   border: 10px solid #1a1a1a;
   bottom: 0;
   height: 160px;
+  width: 100px;
   left: 0;
   outline: none;
   padding: 10px;
@@ -158,6 +159,7 @@ ul {
   margin-bottom: 10px;
   cursor: pointer;
   display: inline-block;
+  border: 1px solid #303030;
 }
 
 .emoji img{
@@ -167,4 +169,6 @@ ul {
 
 .emoji label{
   display: block;
+  width: 100px;
+  text-wrap: wrap;
 }
