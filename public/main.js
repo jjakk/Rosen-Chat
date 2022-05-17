@@ -70,7 +70,7 @@ $(function() {
   }
 
   const sendEmoji = (event) => {
-    var message = event.toElement.src;
+    var message = event.currentTarget.children[0].src;
     // Prevent markup from being injected into the message
     message = cleanInput(message);
     // if there is a non-empty message and a socket connection
